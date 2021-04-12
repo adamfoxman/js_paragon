@@ -9,7 +9,24 @@
         <div class="header">
             <h1>Paragon.app</h1>
         </div>
-        <div class="product_table"></div>
+        <div class="product_table">
+            <table id="product_table">
+                <!-- <tr>
+                    <th>Lp.</th> 
+                    <th>Nazwa</th> 
+                    <th>Ilość</th> 
+                    <th>Cena</th> 
+                    <th>Suma</th>
+                 </tr> -->
+                <tr class="row_template" hidden>
+                    <td class="product_id"></td>
+                    <td class="product_name"></td>
+                    <td class="product_amount"></td>
+                    <td class="product_price"></td>
+                    <td class="product_sum"></td>
+                </tr>
+            </table>
+        </div>
         <div class="add_product"></div>
         <script type="module" src="./main.js"></script>
     </body>

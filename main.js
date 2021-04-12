@@ -1,5 +1,6 @@
 import Product from './Product.js'
 import ProductList from './ProductList.js'
+import View from './View.js';
 
 var first_product = new Product("Jabłko", 3, 2);
 var second_product = new Product("Gruszka", 2, 5);
@@ -38,3 +39,6 @@ product_list.display();
 console.log("usuniecie produktu nr 2");
 product_list.deleteProduct(0);
 product_list.display()
+
+let view = new View(product_list);
+view.showTable();
