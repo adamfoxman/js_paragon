@@ -1,6 +1,6 @@
-import Product from "./Product"
+import Product from "./Product.js"
 
-class ProductList {
+export default class ProductList {
     constructor() {
         this._product_list = [];
     }
