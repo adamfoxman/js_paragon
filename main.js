@@ -42,3 +42,6 @@ product_list.display()
 
 let view = new View(product_list);
 view.showTable();
+
+product_list.addProduct(new Product("Buty", 1, 350));
+view.showTable();

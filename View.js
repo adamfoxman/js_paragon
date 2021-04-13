@@ -3,25 +3,24 @@ import Product from './Product.js'
 
 export default class View {
     constructor(product_list) {
-        this._product_list = product_list;
+        if (product_list instanceof ProductList) {
+            this._product_list = product_list;
+        } else throw new Error("Given object is not an instance of ProductList.");
+        this._original_table = document.getElementById("product_table");
     }
 
     showTable() {
-        let table = document.getElementById("product_table");
-        let template = table.querySelector("tr");
+        let table = this._original_table;
+        table.innerHTML = '';
         this.appendTableHeadings(table);
-
-        let length = this._product_list.getListLength();
-        for (let i = 0; i < length; i++) {
+        for (let i = 0; i < this._product_list.getListLength(); i++) {
+            let row = table.insertRow(-1);
             let product = this._product_list.getProduct(i);
-            let product_on_list = template.cloneNode(true);
-            product_on_list.hidden = false;
-            product_on_list.querySelector(".product_id").innerHTML = 1;
-            product_on_list.querySelector(".product_name").innerHTML = product.name;
-            product_on_list.querySelector(".product_amount").innerHTML = product.amount;
-            product_on_list.querySelector(".product_price").innerHTML = product.price;
-            product_on_list.querySelector(".product_sum").innerHTML = product.getSum();
-            table.appendChild(product_on_list);
+            this.appendNewElement(row, i);
+            this.appendNewElement(row, product.name);
+            this.appendNewElement(row, product.amount);
+            this.appendNewElement(row, product.price);
+            this.appendNewElement(row, product.getSum());
         }
     }
 
@@ -29,11 +28,19 @@ export default class View {
         if (typeof table === 'object') {
             let headings = ["Lp.", "Nazwa", "Ilość", "Cena", "Suma"];
             var row = table.insertRow(-1);
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < headings.length; i++) {
                 var headerCell = document.createElement("TH");
                 headerCell.innerHTML = headings[i];
                 row.appendChild(headerCell);
             }
+        }
+    }
+
+    appendNewElement(row, value) {
+        if (typeof row === 'object') {
+            let element = document.createElement("td");
+            element.innerHTML = value;
+            row.appendChild(element);
         }
     }
 }
