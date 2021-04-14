@@ -3,6 +3,7 @@ export default class Product {
         this._name = name;
         this._amount = amount;
         this._price = price;
+        this._selected = false;
     }
 
     get name() {
@@ -39,7 +40,18 @@ export default class Product {
         } else throw new Error("Given value is not a number.")
     }
 
+    set selected(value){
+        if (typeof value === 'boolean') {
+                this._selected = value;
+        } else throw new Error("Given value is not a boolean.")
+    }
+
+    get selected(){
+        return this._selected;
+    }
+
     getSum() {
         return (this._amount * this._price) + ' zł'; 
     }
+
 }
