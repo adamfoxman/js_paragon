@@ -32,6 +32,7 @@ export default class ProductList {
     }
 
     changeProductPosition(id, new_position) {
+        console.log(id,new_position)
         if (typeof id === 'number' && typeof new_position === 'number') {
             let temp = this._product_list[id];
             this._product_list[id] = this._product_list[new_position];

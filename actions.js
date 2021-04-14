@@ -1,7 +1,6 @@
 export let deleteProduct  = (evt,p) =>{
 
     evt.path[2].style.color="black"
-    console.log(evt.path[2].style)
 
     let product = evt.path[1]
     product.style.color = "red"
@@ -14,7 +13,6 @@ export let deleteProduct  = (evt,p) =>{
 }
 
 export let selectProduct = (evt,p) =>{
-    console.log(p)
     let product = evt.path[1]
     if(p.selected){
         product.style.color = "black"
@@ -26,7 +24,10 @@ export let selectProduct = (evt,p) =>{
 }
 
 export let moveProduct = (evt, p) =>{
-    
+
+    console.log(evt)
+    console.log(p)
+
 }
 
 export default selectProduct;

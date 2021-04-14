@@ -19,6 +19,41 @@ console.log(first_product.name);
 
 console.log("Utworzenie nowej listy z 2 produktami");
 var product_list = new ProductList();
+
+window.onkeydown = (event) =>{
+
+    if(event.key=="ArrowDown"){
+        for(let i=0; i<product_list.getListLength();i++){
+            if(product_list.getProduct(i).selected){
+                let id = i;
+                if(id == product_list.getListLength()-1){
+                    product_list.changeProductPosition(id,0)
+                }else{
+                    product_list.changeProductPosition(id,++id)
+                }
+                view.showTable()
+                break;
+            }
+        }
+
+    }else if(event.key == "ArrowUp"){
+        for(let i=0; i<product_list.getListLength();i++){
+            if(product_list.getProduct(i).selected){
+                let id = i;
+                console.log(id)
+                if(id === 0){
+                    product_list.changeProductPosition(id,product_list.getListLength()-1)
+                }else{
+                    product_list.changeProductPosition(id,--id)
+                }
+                view.showTable()
+                break;
+            }
+        }
+    }
+
+}
+
 product_list.addProduct(first_product);
 product_list.addProduct(second_product);
 product_list.display();

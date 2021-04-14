@@ -1,6 +1,6 @@
 import ProductList from './ProductList.js'
 import Product from './Product.js'
-import {selectProduct, deleteProduct} from './actions.js'
+import {selectProduct, deleteProduct, moveProduct} from './actions.js'
 
 export default class View {
     constructor(product_list) {
@@ -23,6 +23,12 @@ export default class View {
             this.appendNewElement(row, product.amount);
             this.appendNewElement(row, product.price);
             this.appendNewElement(row, product.getSum());
+            console.log(product)
+            if(product.selected){
+                row.style.color = "red"
+            }else{
+                row.style.color = "black"
+            }
         }
     }
 
@@ -44,6 +50,7 @@ export default class View {
             element.innerHTML = value;
             element.addEventListener("click",(evt) => selectProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
             element.addEventListener("dblclick", (evt) => deleteProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
+            element.addEventListener("keypress", (evt) => moveProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
             row.appendChild(element);
         }
     }
