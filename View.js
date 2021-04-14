@@ -1,5 +1,6 @@
 import ProductList from './ProductList.js'
 import Product from './Product.js'
+import {selectProduct, deleteProduct, moveProduct} from './actions.js'
 
 export default class View {
     constructor(product_list) {
@@ -15,12 +16,19 @@ export default class View {
         this.appendTableHeadings(table);
         for (let i = 0; i < this._product_list.getListLength(); i++) {
             let row = table.insertRow(-1);
+            row.className="product"
             let product = this._product_list.getProduct(i);
             this.appendNewElement(row, i);
             this.appendNewElement(row, product.name);
             this.appendNewElement(row, product.amount);
             this.appendNewElement(row, product.price);
             this.appendNewElement(row, product.getSum());
+            console.log(product)
+            if(product.selected){
+                row.style.color = "red"
+            }else{
+                row.style.color = "black"
+            }
         }
     }
 
@@ -40,6 +48,9 @@ export default class View {
         if (typeof row === 'object') {
             let element = document.createElement("td");
             element.innerHTML = value;
+            element.addEventListener("click",(evt) => selectProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
+            element.addEventListener("dblclick", (evt) => deleteProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
+            element.addEventListener("keypress", (evt) => moveProduct(evt,this._product_list.getProduct(parseInt(row.firstChild.innerHTML))))
             row.appendChild(element);
         }
     }
