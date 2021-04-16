@@ -53,5 +53,4 @@ export default class Product {
     getSum() {
         return (this._amount * this._price) + ' zł'; 
     }
-
 }
