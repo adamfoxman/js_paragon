@@ -1,9 +1,10 @@
 * {
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
+  background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,7 +40,7 @@ body {
 .product_table td,
 .product_table th {
   text-align: right;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   padding: 1rem;
 }
 
@@ -54,11 +55,11 @@ body {
   text-align: left;
 }
 
-#product tr:nth-child(even) {
-  background-color: #f2f2f2 i !important;
+.product_table tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-#product tr:nth-child(odd) {
-  background-color: #746f6f !important;
+.product_table tr:nth-child(odd) {
+  background-color: #dadada;
 }
 

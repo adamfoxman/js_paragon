@@ -46,9 +46,11 @@ function appendTableHeadings(table) {
 function appendTableSumRow(table,sum){
     if (typeof table === 'object') {
         var row = table.insertRow(-1);
-        var cell = row.insertCell(-1);
-        cell.colSpan = 5;
-        cell.innerHTML = sum;
+        var sumName = row.insertCell(-1);
+        sumName.colSpan = 4;
+        sumName.innerHTML = 'RAZEM';
+        var sumValue = row.insertCell(-1);
+        sumValue.innerHTML = sum;
     }
 }
 

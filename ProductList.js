@@ -51,7 +51,7 @@ export default class ProductList {
     getFullSum(){
         let sum = 0;
         this._product_list.forEach(p => sum+=p.getSumValue());
-        return 'RAZEM ' + sum + ' zł';
+        return sum + ' zł';
     }
 
     display() {
