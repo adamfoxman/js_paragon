@@ -28,7 +28,6 @@ function showTable(product_list, table) {
     console.log(product_list);
 
     document.getElementById("add_form").onsubmit = addProductToList;
-    // document.getElementById("add_form").addEventListener("onsubmit", (event) => this.addProductToList(event, this._product_list));
 }
 
 function appendTableHeadings(table) {

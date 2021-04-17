@@ -30,19 +30,4 @@ export let moveProduct = (evt, p) => {
 
 }
 
-export let addProductToList = (evt, l) => {
-    let n = document.getElementById("p_name");
-    let a = document.getElementById("p_amount");
-    let p = document.getElementById("p_price");
-    let name = n.value;
-    let amount = a.value;
-    let price = p.value;
-
-    if (name && amount && price) {
-        let new_product = new Product(name, amount, price);
-        l.addProduct(new_product);
-        this.showTable();
-    }
-}
-
 export default selectProduct;
