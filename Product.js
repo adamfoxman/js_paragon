@@ -50,6 +50,10 @@ export default class Product {
         return this._selected;
     }
 
+    getSumValue(){
+        return (this._amount * this._price);
+    }
+
     getSum() {
         return (this._amount * this._price) + ' zł'; 
     }

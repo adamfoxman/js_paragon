@@ -1,34 +1,64 @@
-*
-{
-    background-color: whitesmoke;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+  background-color: whitesmoke;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
-.header{
-    border-radius: 1em;
-    display: flex;
-    width: 30%;
-    justify-content: center;
-    font-size: 24px;
-}
-
-.product{
-
-    background-color: slategray;
-
+.header {
+  border-radius: 1em;
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  font-size: 24px;
 }
 
 .add_product {
-    margin: 1em;
-    border-radius: 1em;
-    display: flex;
-    width: auto;
-    justify-content: center;
+  margin: 1em;
+  border-radius: 1em;
+  display: flex;
+  width: auto;
+  justify-content: center;
 }
+
+.add_product input {
+  border: 5% solid rgb(100, 92, 92);
+  border-radius: 4px;
+}
+
+.product_table table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.product_table td,
+.product_table th {
+  text-align: right;
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.product_table th {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: #5d6b6a;
+  color: white;
+}
+
+.product_table .product td {
+  text-align: left;
+}
+
+#product tr:nth-child(even) {
+  background-color: #f2f2f2 i !important;
+}
+
+#product tr:nth-child(odd) {
+  background-color: #746f6f !important;
+}
+

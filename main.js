@@ -18,12 +18,13 @@ function showTable(product_list, table) {
         appendNewElement(row, product.getSum());
         console.log(product)
         if (product.selected) {
-            row.style.color = "red"
+            row.style.color = "red";
         } else {
-            row.style.color = "black"
+            row.style.color = "black";
         }
     }
-
+    console.log(product_list.getFullSum());
+    appendTableSumRow(table,product_list.getFullSum());
     console.log(product_list);
 
     document.getElementById("add_form").onsubmit = addProductToList;
@@ -39,6 +40,15 @@ function appendTableHeadings(table) {
             headerCell.innerHTML = headings[i];
             row.appendChild(headerCell);
         }
+    }
+}
+
+function appendTableSumRow(table,sum){
+    if (typeof table === 'object') {
+        var row = table.insertRow(-1);
+        var cell = row.insertCell(-1);
+        cell.colSpan = 5;
+        cell.innerHTML = sum;
     }
 }
 

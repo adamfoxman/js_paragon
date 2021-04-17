@@ -48,6 +48,12 @@ export default class ProductList {
         return this._product_list.length;
     }
 
+    getFullSum(){
+        let sum = 0;
+        this._product_list.forEach(p => sum+=p.getSumValue());
+        return 'RAZEM ' + sum + ' zł';
+    }
+
     display() {
         this._product_list.forEach(element => {
             console.log(element.name + " w ilości " + element.amount + " w cenie " + element.price + " za sztukę. Cena za całość: " + element.getSum());
