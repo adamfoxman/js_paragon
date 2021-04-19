@@ -49,6 +49,7 @@ function appendTableSumRow(table,sum){
         sumName.colSpan = 4;
         sumName.innerHTML = 'RAZEM';
         var sumValue = row.insertCell(-1);
+        sumValue.id="SUM";
         sumValue.innerHTML = sum;
     }
 }
@@ -58,7 +59,7 @@ function appendNewElement(row, value) {
         let element = document.createElement("td");
         element.innerHTML = value;
         element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
-        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
+        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         element.addEventListener("keypress", (evt) => moveProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         row.appendChild(element);
     }
@@ -134,5 +135,6 @@ window.onkeydown = (event) => {
     }
 
 }
+
 
 showTable(product_list, table);
