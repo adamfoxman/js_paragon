@@ -1,6 +1,6 @@
 import Product from './Product.js'
 import ProductList from './ProductList.js'
-import { selectProduct, deleteProduct, moveProduct } from './actions.js'
+import { selectProduct, deleteProduct } from './actions.js'
 
 let table = document.getElementById("product_table");
 
@@ -16,6 +16,11 @@ function showTable(product_list, table) {
         appendNewElement(row, product.amount);
         appendNewElement(row, product.price);
         appendNewElement(row, product.getSum());
+        let delete_btn = document.createElement("img")
+        delete_btn.id="delete_product_btn"
+        delete_btn.src="./delete_ico.png"
+        delete_btn.addEventListener("click", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))))
+        row.appendChild(delete_btn)
         console.log(product)
         if (product.selected) {
             row.style.color = "red";
@@ -28,11 +33,12 @@ function showTable(product_list, table) {
     console.log(product_list);
 
     document.getElementById("add_form").onsubmit = addProductToList;
+    document.getElementById("edit_form").onsubmit = (evt) => editProductOnList(evt,product_list)
 }
 
 function appendTableHeadings(table) {
     if (typeof table === 'object') {
-        let headings = ["Lp.", "Nazwa", "Ilość", "Cena", "Suma"];
+        let headings = ["Lp.", "Nazwa", "Ilość", "Cena", "Suma",""];
         var row = table.insertRow(-1);
         for (var i = 0; i < headings.length; i++) {
             var headerCell = document.createElement("TH");
@@ -46,9 +52,10 @@ function appendTableSumRow(table,sum){
     if (typeof table === 'object') {
         var row = table.insertRow(-1);
         var sumName = row.insertCell(-1);
-        sumName.colSpan = 4;
+        sumName.colSpan = 5;
         sumName.innerHTML = 'RAZEM';
         var sumValue = row.insertCell(-1);
+        sumValue.id="SUM";
         sumValue.innerHTML = sum;
     }
 }
@@ -58,7 +65,7 @@ function appendNewElement(row, value) {
         let element = document.createElement("td");
         element.innerHTML = value;
         element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
-        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
+        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         element.addEventListener("keypress", (evt) => moveProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         row.appendChild(element);
     }
@@ -79,6 +86,30 @@ function addProductToList() {
         console.log(localStorage.getItem("list"));
         showTable(product_list, table);
     }
+}
+
+function editProductOnList(evt, productList) {
+    for(let i = 0; i < productList.getListLength();i++){
+        if(productList.getProduct(i).selected){
+            let n = document.getElementById("pe_name");
+            let a = document.getElementById("pe_amount");
+            let p = document.getElementById("pe_price");
+            let name = n.value;
+            let amount = a.value;
+            let price = p.value;
+
+            if (name && amount && price) {
+                let new_product = new Product(name, amount, price);
+                new_product.selected = true
+                console.log(new_product)
+                product_list.setProduct(i,new_product);
+                console.log(localStorage.getItem("list"));
+                showTable(product_list, table);
+            }
+        }
+    }
+
+    
 }
 
 
@@ -134,5 +165,6 @@ window.onkeydown = (event) => {
     }
 
 }
+
 
 showTable(product_list, table);
