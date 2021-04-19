@@ -19,21 +19,23 @@ export let deleteProduct = (evt, p,selected_product) => {
 }
 
 export let selectProduct = (evt, p) => {
+    let edit_form = document.getElementsByClassName("edit_product")[0]
     let product = evt.path[1]
+    console.log(product)
+    console.log(edit_form.childNodes[1].childNodes)
     if (p.selected) {
+        edit_form.style.visibility="hidden"
         product.style.color = "black"
         p.selected = false;
     } else {
+        edit_form.childNodes[1].childNodes[1].value = p.name
+        edit_form.childNodes[1].childNodes[3].value = p.amount
+        edit_form.childNodes[1].childNodes[5].value = p.amount
+        edit_form.style.visibility="visible"
         product.style.color = "red"
         p.selected = true;
     }
 }
 
-export let moveProduct = (evt, p) => {
-
-    console.log(evt)
-    console.log(p)
-
-}
 
 export default selectProduct;

@@ -63,3 +63,13 @@ body {
   background-color: #dadada;
 }
 
+.edit_product{
+  visibility: hidden;
+}
+
+#delete_product_btn{
+
+  margin-top: 0.9rem;
+  margin-left: 0.8rem;
+  filter: invert(48%) sepia(13%) saturate(6000%) hue-rotate(340deg) brightness(95%) contrast(90%);
+}
