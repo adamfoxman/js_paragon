@@ -67,7 +67,6 @@ function appendNewElement(row, value) {
         let element = document.createElement("td");
         element.innerHTML = value;
         element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML)), product_list));
-        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         element.addEventListener("keypress", (evt) => moveProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         row.appendChild(element);
     }
