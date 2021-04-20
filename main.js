@@ -3,6 +3,8 @@ import ProductList from './ProductList.js'
 import { selectProduct, deleteProduct } from './actions.js'
 
 let table = document.getElementById("product_table");
+var storage = localStorage.getItem("list");
+var product_list = new ProductList();
 
 function showTable(product_list, table) {
     table.innerHTML = '';
@@ -64,7 +66,7 @@ function appendNewElement(row, value) {
     if (typeof row === 'object') {
         let element = document.createElement("td");
         element.innerHTML = value;
-        element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
+        element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML)), product_list));
         element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         element.addEventListener("keypress", (evt) => moveProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         row.appendChild(element);
@@ -113,8 +115,7 @@ function editProductOnList(evt, productList) {
 }
 
 
-var storage = localStorage.getItem("list");
-var product_list = new ProductList();
+
 if (storage == null) {
     var first_product = new Product("Jabłko", 3, 2);
     var second_product = new Product("Gruszka", 2, 5);
@@ -166,5 +167,5 @@ window.onkeydown = (event) => {
 
 }
 
-
-showTable(product_list, table);
+// showTable(product_list, table);
+document.addEventListener("change", showTable(product_list, table));
