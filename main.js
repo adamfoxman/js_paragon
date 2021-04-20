@@ -19,9 +19,9 @@ function showTable(product_list, table) {
         appendNewElement(row, product.price);
         appendNewElement(row, product.getSum());
         let delete_btn = document.createElement("img")
-        delete_btn.id="delete_product_btn"
-        delete_btn.src="./delete_ico.png"
-        delete_btn.addEventListener("click", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))))
+        delete_btn.id = "delete_product_btn"
+        delete_btn.src = "./delete_ico.png"
+        delete_btn.addEventListener("click", (evt) => deleteProduct(evt, product_list, product_list.getProduct(parseInt(row.firstChild.innerHTML))))
         row.appendChild(delete_btn)
         console.log(product)
         if (product.selected) {
@@ -31,16 +31,16 @@ function showTable(product_list, table) {
         }
     }
     console.log(product_list.getFullSum());
-    appendTableSumRow(table,product_list.getFullSum());
+    appendTableSumRow(table, product_list.getFullSum());
     console.log(product_list);
 
     document.getElementById("add_form").onsubmit = addProductToList;
-    document.getElementById("edit_form").onsubmit = (evt) => editProductOnList(evt,product_list)
+    document.getElementById("edit_form").onsubmit = (evt) => editProductOnList(evt, product_list)
 }
 
 function appendTableHeadings(table) {
     if (typeof table === 'object') {
-        let headings = ["Lp.", "Nazwa", "Ilość", "Cena", "Suma",""];
+        let headings = ["Lp.", "Nazwa", "Ilość", "Cena", "Suma", ""];
         var row = table.insertRow(-1);
         for (var i = 0; i < headings.length; i++) {
             var headerCell = document.createElement("TH");
@@ -50,14 +50,14 @@ function appendTableHeadings(table) {
     }
 }
 
-function appendTableSumRow(table,sum){
+function appendTableSumRow(table, sum) {
     if (typeof table === 'object') {
         var row = table.insertRow(-1);
         var sumName = row.insertCell(-1);
         sumName.colSpan = 5;
         sumName.innerHTML = 'RAZEM';
         var sumValue = row.insertCell(-1);
-        sumValue.id="SUM";
+        sumValue.id = "SUM";
         sumValue.innerHTML = sum;
     }
 }
@@ -67,7 +67,7 @@ function appendNewElement(row, value) {
         let element = document.createElement("td");
         element.innerHTML = value;
         element.addEventListener("click", (evt) => selectProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML)), product_list));
-        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list,product_list.getProduct(parseInt(row.firstChild.innerHTML))));
+        element.addEventListener("dblclick", (evt) => deleteProduct(evt, product_list, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         element.addEventListener("keypress", (evt) => moveProduct(evt, product_list.getProduct(parseInt(row.firstChild.innerHTML))));
         row.appendChild(element);
     }
@@ -91,8 +91,8 @@ function addProductToList() {
 }
 
 function editProductOnList(evt, productList) {
-    for(let i = 0; i < productList.getListLength();i++){
-        if(productList.getProduct(i).selected){
+    for (let i = 0; i < productList.getListLength(); i++) {
+        if (productList.getProduct(i).selected) {
             let n = document.getElementById("pe_name");
             let a = document.getElementById("pe_amount");
             let p = document.getElementById("pe_price");
@@ -104,17 +104,13 @@ function editProductOnList(evt, productList) {
                 let new_product = new Product(name, amount, price);
                 new_product.selected = true
                 console.log(new_product)
-                product_list.setProduct(i,new_product);
+                product_list.setProduct(i, new_product);
                 console.log(localStorage.getItem("list"));
                 showTable(product_list, table);
             }
         }
     }
-
-    
 }
-
-
 
 if (storage == null) {
     var first_product = new Product("Jabłko", 3, 2);
@@ -167,5 +163,4 @@ window.onkeydown = (event) => {
 
 }
 
-// showTable(product_list, table);
 document.addEventListener("change", showTable(product_list, table));
