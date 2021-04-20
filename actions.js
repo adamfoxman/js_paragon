@@ -1,5 +1,3 @@
-import showTable from './main.js'
-
 export let deleteProduct = (evt, p, selected_product) => {
 
     evt.path[2].style.color = "black"
@@ -23,7 +21,6 @@ export let deleteProduct = (evt, p, selected_product) => {
 export let selectProduct = (evt, p, product_list) => {
     let edit_form = document.getElementsByClassName("edit_product")[0]
     let product = evt.path[1]
-    // let evt_parent = evt.target.parentNode;
     console.log(product)
     console.log(edit_form.childNodes[1].childNodes)
 
@@ -45,6 +42,5 @@ export let selectProduct = (evt, p, product_list) => {
         p.selected = true;
     }
 }
-
 
 export default selectProduct;
