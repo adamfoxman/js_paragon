@@ -1,7 +1,7 @@
 export let deleteProduct = (evt, p, selected_product) => {
-
-    evt.path[2].style.color = "black"
-    let product = evt.path[1]
+    var path = evt.path || (evt.composedPath && evt.composedPath());
+    path[2].style.color = "black"
+    let product = path[1]
 
     product.style.color = "red"
     let decision = window.confirm("Do you want to delete this product?");
@@ -19,8 +19,9 @@ export let deleteProduct = (evt, p, selected_product) => {
 }
 
 export let selectProduct = (evt, p, product_list) => {
+    var path = evt.path || (evt.composedPath && evt.composedPath());
     let edit_form = document.getElementsByClassName("edit_product")[0]
-    let product = evt.path[1]
+    let product = path[1]
     console.log(product)
     console.log(edit_form.childNodes[1].childNodes)
 
