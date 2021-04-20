@@ -24,16 +24,21 @@ export let selectProduct = (evt, p, product_list) => {
     console.log(product)
     console.log(edit_form.childNodes[1].childNodes)
 
-    for (let index = 0; index < product_list.getListLength(); index++) {
-        const element = product_list.getProduct(index);
-        element.selected = false;
-    }
+    let product_list_by_tag = document.getElementsByClassName("product")
 
     if (p.selected) {
         edit_form.style.visibility = "hidden"
         product.style.color = "black"
         p.selected = false;
     } else {
+
+        for (let index = 0; index < product_list_by_tag.length; index++) {
+            const element = product_list_by_tag[index];
+            edit_form.style.visibility = "hidden";
+            element.style.color = "black";
+            product_list.getProduct(index)._selected = false;
+        }
+
         edit_form.childNodes[1].childNodes[1].value = p.name
         edit_form.childNodes[1].childNodes[3].value = p.amount
         edit_form.childNodes[1].childNodes[5].value = p.getPrice();
