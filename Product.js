@@ -55,7 +55,7 @@ export default class Product {
     }
 
     getSum() {
-        return (this._amount * this._price) + ' zł'; 
+        return (this._amount * this._price).toFixed(2) + ' zł'; 
     }
 
     getPrice() {
